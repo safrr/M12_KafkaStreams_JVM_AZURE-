@@ -13,7 +13,7 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 public class KStreamsApplication {
-
+    
     public static void main(String[] args) throws Exception {
 
         Properties props = new Properties();
@@ -22,7 +22,6 @@ public class KStreamsApplication {
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
-
         final String INPUT_TOPIC_NAME = System.getenv().get("INPUT_TOPIC_NAME");
         final String OUTPUT_TOPIC_NAME = System.getenv().get("OUTPUT_TOPIC_NAME");
 
@@ -30,7 +29,7 @@ public class KStreamsApplication {
 
         final KStream<String, String> input_records = builder.stream(INPUT_TOPIC_NAME, Consumed.with(Serdes.String(), Serdes.String()));
 
-        //Transform records
+        // Transform records
         input_records.map(KStreamsApplication::mapValues).to(OUTPUT_TOPIC_NAME);
 
         final Topology topology = builder.build();
@@ -39,7 +38,7 @@ public class KStreamsApplication {
         final KafkaStreams streams = new KafkaStreams(topology, props);
         final CountDownLatch latch = new CountDownLatch(1);
 
-        // attach shutdown handler to catch control-c
+        // Attach shutdown handler to catch control-c
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
@@ -65,7 +64,6 @@ public class KStreamsApplication {
         LONG_STAY("Long stay", 15);
 
         private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
         private final String description;
         private final long minDaysOfStay;
 
