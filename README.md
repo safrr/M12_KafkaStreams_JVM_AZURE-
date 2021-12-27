@@ -154,7 +154,8 @@ FROM EXPEDIA_STREAM GROUP BY CATEGORY EMIT CHANGES;
 * Select from the resulting table: 
   ```shell
 ksql> SELECT * FROM EXPEDIA_TABLE WHERE CATEGORY IN ('Short stay', 'Standard stay', 'Standard extended stay', 'Long stay', 'Erroneous data'); 
-
+```
+```
 +----------------------------+------------------+----------------+ 
 |CATEGORY                    |TOTAL_HOTELS      |DISTINCT_HOTELS | 
 +----------------------------+------------------+----------------+ 
