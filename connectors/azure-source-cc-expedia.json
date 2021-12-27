@@ -1,0 +1,12 @@
+{
+  "name": "expedia",
+  "config": {
+    "connector.class": "io.confluent.connect.azure.blob.storage.AzureBlobStorageSourceConnector",
+    "azblob.account.name": "bd201stacc",
+    "azblob.account.key": "L6X661FhSG78rVrWUyNOTzeXyzfHzQVZF9bX0ukUS4U90VQdLTeuEVWUFiok8l4MAXJGMLYIolTT1R1rjuNtrA==",
+    "azblob.container.name": "m12kafkastreams",
+    "format.class": "io.confluent.connect.azure.blob.storage.format.avro.AvroFormat",
+    "confluent.topic.bootstrap.servers": "kafka:9092",
+    "tasks.max": "1"
+  }
+}

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kstream-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kstream-app
+  template:
+    metadata:
+      labels:
+        app: kstream-app
+    spec:
+      containers:
+        - name: kstream-app
+          image: crf12.azurecr.io/kstream-app:1.0
+          env:
+            - name: APPLICATION_ID
+              value: kstream-app
+            - name: BOOTSTRAP_SERVERS
+              value: kafka:9092
+            - name: INPUT_TOPIC_NAME
+              value: expedia
+            - name: OUTPUT_TOPIC_NAME
+              value: expedia-ext
